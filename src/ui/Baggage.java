@@ -1,18 +1,25 @@
 package ui;
 
-import java.awt.Image;
-import java.net.URL;
-import javax.swing.ImageIcon;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public class Baggage extends Actor {
 	public boolean onGoal = false;
 	
     public Baggage(int x, int y) {
         super(x, y);
-        URL loc = this.getClass().getResource("images/baggage.png");
-        ImageIcon iia = new ImageIcon(loc);
-        Image image = iia.getImage();
-        this.setImage(image);
+        
+        BufferedImage image;
+		try {
+			image = ImageIO.read(new File("images/baggage.png"));
+			this.setImage(image);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     public void move(int x, int y) {
@@ -37,19 +44,27 @@ public class Baggage extends Actor {
     
     public void changeToGoalImage(){
     	if(onGoal){
-    		URL loc = this.getClass().getResource("images/baggage_on_goal.png");
-    		ImageIcon iia = new ImageIcon(loc);
-            Image image = iia.getImage();
-            this.setImage(image);
+    		 BufferedImage image;
+    		 try {
+    			image = ImageIO.read(new File("images/baggage_on_goal.png"));
+    			this.setImage(image);
+    		} catch (IOException e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		}
     	}
     }
     
     public void changeToNonGoalImage(){
     	if(!onGoal){
-    		URL loc = this.getClass().getResource("images/baggage.png");
-    		ImageIcon iia = new ImageIcon(loc);
-            Image image = iia.getImage();
-            this.setImage(image);
+    		 BufferedImage image;
+    		 try {
+    			image = ImageIO.read(new File("images/baggage.png"));
+    			this.setImage(image);
+    		 } catch (IOException e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		 }
     	}
     }
 }

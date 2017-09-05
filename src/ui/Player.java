@@ -1,18 +1,25 @@
 package ui;
 
-import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
-import javax.swing.ImageIcon;
+
+import javax.imageio.ImageIO;
 
 public class Player extends Actor {
 
     public Player(int x, int y) {
         super(x, y);
-
-        URL loc = this.getClass().getResource("images/player.png");
-        ImageIcon iia = new ImageIcon(loc);
-        Image image = iia.getImage();
-        this.setImage(image);
+        
+        BufferedImage image;
+		try {
+			image = ImageIO.read(new File("images/player.png"));
+			this.setImage(image);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     public void move(int x, int y) {
